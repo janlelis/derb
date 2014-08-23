@@ -5,8 +5,6 @@ require 'yaml'
 require 'ostruct'
 
 class Derb
-  VERSION = '0.1.1'
-
   def initialize(template_file = nil, data_file = nil)
     template_file = template_file || 'Dockerfile.erb'
     data_file     = data_file     || 'Dockerfile.yml'
