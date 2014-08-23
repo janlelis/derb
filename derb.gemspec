@@ -1,12 +1,10 @@
 # -*- encoding: utf-8 -*-
 
-load File.expand_path('../bin/derb', __FILE__)
-
 Gem::Specification.new do |gem|
   gem.name          = "derb"
-  gem.version       = Derb::VERSION
+  gem.version       = "0.2.0"
   gem.summary       = 'Dockerfile.erb'
-  gem.description   = ' Allows you to have Dockerfile.erb templates.'
+  gem.description   = 'Allows you to have Dockerfile.erb templates.'
   gem.license       = "MIT"
   gem.authors       = ["Jan Lelis"]
   gem.email         = "mail@janlelis.de"
