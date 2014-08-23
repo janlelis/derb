@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+
+require 'erb'
+require 'yaml'
+require 'ostruct'
+
+class Derb
+  VERSION = '0.1.0'
+
+  def initialize(template_file = nil, data_file = nil)
+    template_file = template_file || 'Dockerfile.erb'
+    data_file     = data_file     || 'Dockerfile.yml'
+
+    unless File.exists? template_file
+      raise ArgumentError, "#{template_file} not found"
+    end
+
+    @template = File.read template_file
+    if File.exists? data_file
+      @data = YAML.load_file data_file if data_file
+    end
+  end
+
+  def render
+    ERB.new(@template).result(
+      OpenStruct.new(@data).instance_eval { binding }
+    )
+  end
+
+  def render_to_file(output_filename = 'Dockerfile')
+    if File.exists? output_filename
+      print "#{output_filename} already exists, overwrite? (y) "
+      return if gets.chomp.upcase != "Y"
+    end
+      
+    File.open(output_filename, 'w+'){ |f|
+      f.write(render)
+    }
+  end
+end
+
+begin
+  Derb.new(ARGV[0], ARGV[1]).render_to_file
+rescue ArgumentError => e
+  $stderr.puts e.message
+end
