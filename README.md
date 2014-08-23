@@ -1,6 +1,6 @@
-# derb
+# Dockerfile.erb
 
-Allows you to have Dockerfile.erb templates.
+Allows you to have simple Dockerfile.erb templates.
 
 
 ## Install
@@ -14,6 +14,7 @@ In a directory with a `Dockerfile.erb` (and optionally a `Dockerfile.yml`), run:
 
     $ derb
 
+It will create the Dockerfile for you.
 
 ## License
 
