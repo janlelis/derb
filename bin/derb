@@ -5,7 +5,7 @@ require 'yaml'
 require 'ostruct'
 
 class Derb
-  VERSION = '0.1.0'
+  VERSION = '0.1.1'
 
   def initialize(template_file = nil, data_file = nil)
     template_file = template_file || 'Dockerfile.erb'
@@ -27,20 +27,23 @@ class Derb
     )
   end
 
-  def render_to_file(output_filename = 'Dockerfile')
+  def render_to_file(output_filename = nil)
+    output_filename = output_filename || 'Dockerfile'
+
     if File.exists? output_filename
-      print "#{output_filename} already exists, overwrite? (y) "
-      return if gets.chomp.upcase != "Y"
+      raise "#{output_filename} does already exist, aborting"
+    else
+      File.open(output_filename, 'w+'){ |f|
+        f.write(render)
+      }
+      puts "Created #{output_filename}"
     end
-      
-    File.open(output_filename, 'w+'){ |f|
-      f.write(render)
-    }
   end
 end
 
 begin
-  Derb.new(ARGV[0], ARGV[1]).render_to_file
-rescue ArgumentError => e
+  Derb.new(ARGV[0], ARGV[1]).render_to_file(ARGV[2])
+rescue => e
   $stderr.puts e.message
+  exit 1
 end
