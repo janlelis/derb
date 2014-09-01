@@ -20,7 +20,7 @@ class Derb
   end
 
   def render
-    ERB.new(@template).result(
+    ERB.new(@template, nil, "%<>").result(
       OpenStruct.new(@data).instance_eval { binding }
     )
   end

@@ -19,7 +19,7 @@ It will create the Dockerfile for you.
 
 ## Data
 
-You can define a `Dockerfile.yml` in the same directory - its data be available in the template.
+You can define a `Dockerfile.yml` in the same directory - its data will be available in the template.
 
 
 ## License

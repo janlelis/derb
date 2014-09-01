@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name          = "derb"
-  gem.version       = "0.2.0"
+  gem.version       = "0.3.0"
   gem.summary       = 'Dockerfile.erb'
   gem.description   = 'Allows you to have Dockerfile.erb templates.'
   gem.license       = "MIT"
