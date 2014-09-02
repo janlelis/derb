@@ -14,7 +14,7 @@ In a directory with a `Dockerfile.erb` run:
 
     $ derb
 
-It will create the Dockerfile for you.
+It will create the Dockerfile for you. See [janlelis/ruby-only](https://github.com/janlelis/ruby-only) for an example.
 
 
 ## Data
